@@ -3,67 +3,79 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#0b1711">
+  <meta name="theme-color" content="#07110d">
   <title>Forestín · ChatCoip</title>
-  <link rel="stylesheet" href="/static/styles.css?v=20260825.3">
+  <style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#eef6f1;background:#07110d;--bg:#07110d;--panel:#0d1d16;--panel2:#10251b;--line:#20372b;--muted:#95aa9d;--green:#5fd38c;--green2:#2f9e61;--text:#f4f8f5;--shadow:0 24px 80px rgba(0,0,0,.38)}
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg)}body{min-height:100vh;background:radial-gradient(circle at 85% 0%,rgba(67,152,100,.18),transparent 30%),radial-gradient(circle at 10% 25%,rgba(54,111,78,.12),transparent 32%),#07110d;color:var(--text)}button,textarea{font:inherit}
+    .app{min-height:100vh;display:flex;flex-direction:column}.topbar{height:76px;padding:0 max(18px,calc((100vw - 1080px)/2));display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(7,17,13,.8);backdrop-filter:blur(18px);position:sticky;top:0;z-index:10}.brand{display:flex;align-items:center;gap:12px}.logo,.avatar{display:grid;place-items:center;background:linear-gradient(145deg,#1f6a42,#123522);border:1px solid rgba(255,255,255,.1);color:#fff;font-weight:800;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}.logo{width:42px;height:42px;border-radius:13px}.brand small{display:block;color:#78a88d;font-size:10px;letter-spacing:.18em;font-weight:800}.brand strong{display:block;font-size:20px;letter-spacing:-.02em}.status{display:flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid var(--line);border-radius:999px;color:#b8c9be;font-size:12px;background:rgba(255,255,255,.03)}.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 14px rgba(95,211,140,.8)}
+    .page{width:min(940px,calc(100% - 28px));margin:0 auto;flex:1;padding:44px 0 28px}.hero{text-align:center;margin-bottom:28px}.eyebrow{display:inline-flex;padding:7px 10px;border:1px solid #234733;border-radius:999px;background:#0d2118;color:#7fd9a0;font-size:10px;letter-spacing:.18em;font-weight:800}.hero h1{font-size:clamp(38px,7vw,64px);line-height:.98;letter-spacing:-.05em;margin:18px 0 14px}.hero h1 span{color:#72dd9b}.hero p{max-width:650px;margin:0 auto;color:var(--muted);font-size:16px;line-height:1.65}
+    .card{background:linear-gradient(180deg,rgba(16,37,27,.96),rgba(10,24,17,.98));border:1px solid rgba(110,161,128,.18);border-radius:26px;box-shadow:var(--shadow);overflow:hidden}.card-head{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid rgba(255,255,255,.06)}.card-head small{display:block;color:#6e907b;font-size:10px;letter-spacing:.16em;font-weight:800}.card-head h2{margin:3px 0 0;font-size:20px}.online{display:flex;align-items:center;gap:7px;color:#9dc0aa;font-size:12px}.online i{width:8px;height:8px;border-radius:50%;background:var(--green)}
+    .messages{min-height:230px;max-height:430px;overflow:auto;padding:22px}.message{display:flex;gap:11px;margin:0 0 16px;align-items:flex-start}.message.user{justify-content:flex-end}.avatar{width:34px;height:34px;border-radius:11px;flex:0 0 auto;font-size:13px}.bubble{max-width:78%;background:#14291e;border:1px solid rgba(255,255,255,.05);border-radius:8px 18px 18px 18px;padding:13px 15px;color:#eaf3ed}.bubble b{display:block;color:#7dd69d;font-size:11px;margin-bottom:4px}.bubble p{margin:0;line-height:1.55}.user .bubble{background:linear-gradient(135deg,#2b7a4b,#205e3a);border-color:rgba(255,255,255,.08);border-radius:18px 8px 18px 18px;color:white}
+    .suggestions{display:flex;gap:8px;flex-wrap:wrap;padding:0 22px 16px}.suggestions button{border:1px solid #274333;background:#0c1c14;color:#b7c9bd;border-radius:999px;padding:9px 12px;cursor:pointer;transition:.18s ease}.suggestions button:hover{border-color:#3b684c;color:#e6f3ea;background:#11251a}.composer-wrap{padding:0 18px 18px}.composer{display:flex;gap:10px;align-items:flex-end;padding:8px;border:1px solid #2b4737;border-radius:18px;background:#08140e;box-shadow:inset 0 1px 0 rgba(255,255,255,.03)}textarea{flex:1;resize:none;min-height:48px;max-height:140px;border:0;outline:0;background:transparent;color:#fff;padding:13px 12px;line-height:1.4}textarea::placeholder{color:#6f8376}.send{height:46px;border:0;border-radius:13px;background:linear-gradient(135deg,#68dc94,#3bb56e);color:#092114;font-weight:800;padding:0 19px;cursor:pointer;box-shadow:0 8px 24px rgba(59,181,110,.22)}.send:disabled{opacity:.55;cursor:wait}.hint{text-align:center;color:#5f7567;font-size:10px;margin-top:9px}
+    footer{text-align:center;color:#52695b;font-size:11px;padding:22px 0 28px}
+    @media(max-width:640px){.topbar{height:68px;padding:0 14px}.status{display:none}.page{width:min(100% - 20px,940px);padding-top:28px}.hero{margin-bottom:20px}.hero h1{font-size:42px}.hero p{font-size:14px}.card{border-radius:22px}.messages{min-height:260px;padding:16px}.bubble{max-width:88%}.suggestions{padding:0 14px 14px;overflow:auto;flex-wrap:nowrap}.suggestions button{white-space:nowrap}.composer-wrap{padding:0 12px 12px}.composer{flex-direction:column;align-items:stretch}.send{width:100%}.card-head{padding:16px}}
+  </style>
 </head>
 <body>
-  <div class="app-shell">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark">C</div>
-        <div class="brand-copy">
-          <span class="brand-overline">FORESTÍN</span>
-          <strong>ChatCoip</strong>
-        </div>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="logo">C</div><div><small>FORESTÍN</small><strong>ChatCoip</strong></div></div>
+    <div class="status"><span class="dot"></span> Datos de prueba</div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">CONSULTA INTELIGENTE</div>
+      <h1>Conversa con <span>tus datos.</span></h1>
+      <p>Pregunta en lenguaje natural. ChatCoip interpreta tu consulta, busca en la fuente disponible y te responde de forma simple.</p>
+    </section>
+
+    <section class="card">
+      <div class="card-head"><div><small>ASISTENTE</small><h2>ChatCoip</h2></div><div class="online"><i></i> Disponible</div></div>
+      <div id="messages" class="messages">
+        <div class="message bot"><div class="avatar">C</div><div class="bubble"><b>ChatCoip</b><p>Hola. Puedo ayudarte a consultar los datos de incendios forestales. ¿Qué quieres saber?</p></div></div>
       </div>
-      <div class="status-pill"><span class="status-dot"></span> Datos de prueba</div>
-    </header>
-
-    <main class="page">
-      <section class="hero">
-        <div class="eyebrow">CONSULTA INTELIGENTE</div>
-        <h1>Conversa con tus datos.</h1>
-        <p>Pregunta en lenguaje natural. ChatCoip interpreta tu consulta, busca en la fuente disponible y te responde de forma simple.</p>
-      </section>
-
-      <section class="chat-card" aria-label="Chat de consultas">
-        <div class="chat-head">
-          <div>
-            <span class="chat-label">ASISTENTE</span>
-            <h2>ChatCoip</h2>
-          </div>
-          <div class="online"><span></span> Disponible</div>
-        </div>
-
-        <div id="messages" class="messages">
-          <div class="message bot">
-            <div class="avatar">C</div>
-            <div class="bubble">
-              <b>ChatCoip</b>
-              <p>Hola. Puedo ayudarte a consultar los datos de incendios forestales. ¿Qué quieres saber?</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="examples" aria-label="Preguntas sugeridas">
-          <button type="button">¿Cuántos incendios históricos hay?</button>
-          <button type="button">¿Qué región tiene más incendios?</button>
-          <button type="button">¿Cuál fue el incendio más grande?</button>
-        </div>
-
+      <div class="suggestions">
+        <button type="button">¿Cuántos incendios históricos hay?</button>
+        <button type="button">¿Qué región tiene más incendios?</button>
+        <button type="button">¿Cuál fue el incendio más grande?</button>
+      </div>
+      <div class="composer-wrap">
         <form id="form" class="composer">
-          <textarea id="question" rows="1" placeholder="Escribe tu pregunta…" required aria-label="Pregunta"></textarea>
-          <button id="send" type="submit">Preguntar</button>
+          <textarea id="question" rows="1" placeholder="Escribe tu pregunta…" required></textarea>
+          <button id="send" class="send" type="submit">Preguntar</button>
         </form>
         <div class="hint">Enter para enviar · Shift + Enter para nueva línea</div>
-      </section>
-    </main>
-
-    <footer>Forestín · ChatCoip <span>2026.08.25.3</span></footer>
-  </div>
-
-  <script src="/static/config.js?v=20260825.3"></script>
-  <script src="/static/app.js?v=20260825.3"></script>
+      </div>
+    </section>
+  </main>
+  <footer>Forestín · ChatCoip · 2026.08.25.4</footer>
+</div>
+<script>
+const form=document.getElementById('form');
+const input=document.getElementById('question');
+const messages=document.getElementById('messages');
+const send=document.getElementById('send');
+document.querySelectorAll('.suggestions button').forEach(b=>b.addEventListener('click',()=>{input.value=b.textContent;input.focus()}));
+function addMessage(text,type){
+  const row=document.createElement('div'); row.className='message '+type;
+  if(type==='bot') row.innerHTML='<div class="avatar">C</div><div class="bubble"><b>ChatCoip</b><p></p></div>';
+  else row.innerHTML='<div class="bubble"><p></p></div>';
+  row.querySelector('p').textContent=text; messages.appendChild(row); messages.scrollTop=messages.scrollHeight; return row;
+}
+form.addEventListener('submit',async(e)=>{
+  e.preventDefault(); const q=input.value.trim(); if(!q)return;
+  addMessage(q,'user'); input.value=''; send.disabled=true; send.textContent='Consultando…';
+  const pending=addMessage('Estoy consultando los datos…','bot');
+  try{
+    const r=await fetch('/api/preguntar',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pregunta:q})});
+    const data=await r.json(); if(!r.ok) throw new Error(data.detail||'No fue posible realizar la consulta.');
+    pending.querySelector('p').textContent=data.respuesta;
+  }catch(err){pending.querySelector('p').textContent='No pude completar la consulta: '+err.message;}
+  finally{send.disabled=false; send.textContent='Preguntar'; input.focus();}
+});
+input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();form.requestSubmit();}});
+</script>
 </body>
 </html>
